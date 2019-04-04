@@ -51,12 +51,13 @@ public class OrdersService extends EntityService<Order> {
     @Transactional
     public void placeOrder(Order order) {
         if (order.getLenses().size() < 2)
+            //wyjątek z hierarchii RuntimeException powoduje wycofanie transakcji (rollback)
             throw new NotEnoughItemsException();
         for (Lens lensStub : order.getLenses()) {
             Lens lens = em.find(Lens.class, lensStub.getId());
 
             if (lens.getAmount() < 1) {
-                //wyjątek z hierarchii RuntineException powoduje wycofanie transakcji (rollback)
+                //wyjątek z hierarchii RuntimeException powoduje wycofanie transakcji (rollback)
                 throw new OutOfStockException();
             } else {
                 int newAmount = lens.getAmount() - 1;
@@ -64,7 +65,7 @@ public class OrdersService extends EntityService<Order> {
             }
         }
 
-        //jeśli wcześniej nie został wyrzucony wyjątek OutOfStockException, zamówienie jest zapisywane w bazie danych
+        //jeśli wcześniej nie został wyrzucony wyjątek, zamówienie jest zapisywane w bazie danych
         save(order);
     }
 }
