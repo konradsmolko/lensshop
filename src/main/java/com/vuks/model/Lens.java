@@ -31,7 +31,7 @@ public class Lens {
 
     @Getter
     @Setter
-    String dioptria;
+    Double dioptria;
 
     @Getter
     @Setter

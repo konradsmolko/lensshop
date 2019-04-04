@@ -16,19 +16,19 @@ public class LensService extends EntityService<Lens> {
     //(wstrzykiwanie zależności przez konstruktor).
     public LensService(EntityManager em) {
 
-        //Book.class - klasa encyjna, na której będą wykonywane operacje
-        //Book::getId - metoda klasy encyjnej do pobierania klucza głównego
+        //Lens.class - klasa encyjna, na której będą wykonywane operacje
+        //Lens::getId - metoda klasy encyjnej do pobierania klucza głównego
         super(em, Lens.class, Lens::getId);
     }
 
     /**
-     * Pobranie wszystkich książek z bazy danych.
+     * Pobranie wszystkich soczewek z bazy danych.
      *
-     * @return lista książek
+     * @return lista soczewek
      */
     public List<Lens> findAll() {
-        //pobranie listy wszystkich książek za pomocą zapytania nazwanego (ang. named query)
-        //zapytanie jest zdefiniowane w klasie Book
+        //pobranie listy wszystkich soczewek za pomocą zapytania nazwanego (ang. named query)
+        //zapytanie jest zdefiniowane w klasie Lens
         return em.createNamedQuery(Lens.FIND_ALL, Lens.class).getResultList();
     }
 }
