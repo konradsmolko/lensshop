@@ -1,0 +1,231 @@
+{
+	"variables": [],
+	"info": {
+		"name": "pt_lensshop",
+		"_postman_id": "ffdda16c-a59a-e99a-69aa-42ae58848c1f",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Zamówienie #4",
+			"request": {
+				"url": "http://localhost:9099/orders",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"lenses\": [\n\t\t{\"id\": \"15877953-84b7-4c41-96fb-e3b00c813f9d\"},\n\t\t{\"id\": \"36b439bd-86fd-4464-a870-e9b66cc84dd4\"}\n\t\t]\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "3.0: amount=3",
+			"request": {
+				"url": "http://localhost:9099/lenses/15877953-84b7-4c41-96fb-e3b00c813f9d",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\": \"15877953-84b7-4c41-96fb-e3b00c813f9d\",\n\t\"dioptria\": \"3.0\",\n\t\"amount\": \"3\"\n}"
+				},
+				"description": "Ustawienie liczby dostępnych sztuk produktu"
+			},
+			"response": []
+		},
+		{
+			"name": "Zamówienie #3",
+			"request": {
+				"url": "http://localhost:9099/orders",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"lenses\": [\n\t\t{\"id\": \"15877953-84b7-4c41-96fb-e3b00c813f9d\"},\n\t\t{\"id\": \"36b439bd-86fd-4464-a870-e9b66cc84dd4\"}\n\t\t]\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Zamówienie #2",
+			"request": {
+				"url": "http://localhost:9099/orders",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"lenses\": [\n\t\t{\"id\": \"15877953-84b7-4c41-96fb-e3b00c813f9d\"}\n\t\t]\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Zamówienie #1",
+			"request": {
+				"url": "http://localhost:9099/orders",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"lenses\": [\n\t\t{\"id\": \"15877953-84b7-4c41-96fb-e3b00c813f9d\"},\n\t\t{\"id\": \"e8e80511-9b67-4013-9aa1-ffb8cd531449\"}\n\t\t]\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "/orders",
+			"request": {
+				"url": "http://localhost:9099/orders",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"dioptria\": \"1.4\",\n\t\"amount\": \"2\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "/lenses",
+			"request": {
+				"url": "http://localhost:9099/lenses",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"dioptria\": \"1.4\",\n\t\"amount\": \"2\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "1.4 -> /lenses",
+			"request": {
+				"url": "http://localhost:9099/lenses",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\": \"2c4fa293-2145-488f-a452-c4e5efd6fb95\",\n\t\"dioptria\": \"1.4\",\n\t\"amount\": \"2\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "3.0 -> /lenses",
+			"request": {
+				"url": "http://localhost:9099/lenses",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\": \"15877953-84b7-4c41-96fb-e3b00c813f9d\",\n\t\"dioptria\": \"3.0\",\n\t\"amount\": \"2\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "1.0 -> /lenses",
+			"request": {
+				"url": "http://localhost:9099/lenses",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\": \"e8e80511-9b67-4013-9aa1-ffb8cd531449\",\n\t\"dioptria\": \"1.0\",\n\t\"amount\": \"2\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "0.2 -> /lenses",
+			"request": {
+				"url": "http://localhost:9099/lenses",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\": \"36b439bd-86fd-4464-a870-e9b66cc84dd4\",\n\t\"dioptria\": \"0.2\",\n\t\"amount\": \"2\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
