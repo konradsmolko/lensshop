@@ -28,6 +28,7 @@ public class OrdersServiceTest {
         Order order = new Order();
         Lens lens = new Lens();
         lens.setAmount(0);
+        lens.setCena(30.0);
         order.getLenses().add(lens);
         order.getLenses().add(lens);
 
@@ -47,6 +48,7 @@ public class OrdersServiceTest {
         Order order = new Order();
         Lens lens = new Lens();
         lens.setAmount(2);
+        lens.setCena(30.0);
         order.getLenses().add(lens);
         
         Mockito.when(em.find(Lens.class, lens.getId())).thenReturn(lens);
@@ -67,6 +69,8 @@ public class OrdersServiceTest {
         Lens lens2 = new Lens();
         lens1.setAmount(1);
         lens2.setAmount(1);
+        lens1.setCena(30.0);
+        lens2.setCena(20.0);
         order.getLenses().add(lens1);
         order.getLenses().add(lens2);
 
@@ -82,8 +86,8 @@ public class OrdersServiceTest {
         //dostępna liczba soczewek zmniejszyła się:
         assertEquals(0, (int)lens1.getAmount());
         assertEquals(0, (int)lens2.getAmount());
-        //nastąpiły dokładnie dwa wywołania em.persist(order) w celu zapisania zamówienia:
-        Mockito.verify(em, times(2)).persist(order);
+        //nastąpiło dokładnie jedno wywołanie em.persist(order) w celu zapisania zamówienia:
+        Mockito.verify(em, times(1)).persist(order);
     }
     
     @Test
@@ -92,6 +96,7 @@ public class OrdersServiceTest {
         Order order = new Order();
         Lens lens = new Lens();
         lens.setAmount(2);
+        lens.setCena(5.0);
         order.getLenses().add(lens);
         order.getLenses().add(lens);
         
@@ -106,8 +111,8 @@ public class OrdersServiceTest {
         //Assert
         //dostępna liczba soczewek zmniejszyła się:
         assertEquals(0, (int)lens.getAmount());
-        //nastąpiły dokładnie dwa wywołania em.persist(order) w celu zapisania zamówienia:
-        Mockito.verify(em, times(2)).persist(order);
+        //nastąpiło dokładnie jedno wywołanie em.persist(order) w celu zapisania zamówienia:
+        Mockito.verify(em, times(1)).persist(order);
     }
     
     @Test

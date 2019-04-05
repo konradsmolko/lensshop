@@ -68,7 +68,7 @@ public class LensController {
      */
     @GetMapping("/{id}")
     public ResponseEntity<Lens> getLens(@PathVariable UUID id) {
-        //wyszukanie książki w bazie danych
+        //wyszukanie soczewki w bazie danych
         Lens lens = lensService.find(id);
 
         return lens != null ? ResponseEntity.ok(lens) : ResponseEntity.notFound().build();
