@@ -56,9 +56,11 @@ public class OrdersService extends EntityService<Order> {
             //wyjątek z hierarchii RuntimeException powoduje wycofanie transakcji (rollback)
             throw new NotEnoughItemsException();
         
-        int kwota = 0;
-        for (Lens lensStub : llst) {
-            kwota += lensStub.getCena();
+        Double kwota = 0.0;
+        for (Lens ls: llst)
+        {
+            Lens lens = em.find(Lens.class, ls.getId());
+            kwota = kwota + lens.getCena();
         }
         if (kwota < 10.0)
             throw new OrderPriceNotHighEnoughException();
