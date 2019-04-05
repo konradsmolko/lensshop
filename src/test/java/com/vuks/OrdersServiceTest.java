@@ -3,6 +3,7 @@ package com.vuks;
 import com.vuks.model.Lens;
 import com.vuks.model.Order;
 import com.vuks.services.OrdersService;
+import com.vuks.services.exceptions.OrderPriceNotHighEnoughException;
 import com.vuks.services.exceptions.NotEnoughItemsException;
 import com.vuks.services.exceptions.OutOfStockException;
 import org.junit.Test;
@@ -61,6 +62,28 @@ public class OrdersServiceTest {
         //Assert - exception expected
     }
 
+    @Test(expected = OrderPriceNotHighEnoughException.class)
+    public void whenOrdered2OrMoreItemsForTotalOfLessThan10_throwsPriceNotHighEnEx()
+    {
+        //Arrange
+        Order order = new Order();
+        Lens lens = new Lens();
+        lens.setAmount(2);
+        lens.setCena(1.0);
+        order.getLenses().add(lens);
+        order.getLenses().add(lens);
+        
+
+        Mockito.when(em.find(Lens.class, lens.getId())).thenReturn(lens);
+
+        OrdersService ordersService = new OrdersService(em);
+
+        //Act
+        ordersService.placeOrder(order);
+
+        //Assert - exception expected
+    }
+    
     @Test
     public void whenOrderedDifferentLensesAvailable_placeOrderDecreasesAmountByTwo() {
         //Arrange
