@@ -8,6 +8,7 @@ package com.vuks.services;
 import com.vuks.model.Lens;
 import com.vuks.model.Order;
 import com.vuks.services.exceptions.NotEnoughItemsException;
+import com.vuks.services.exceptions.OrderPriceNotHighEnoughException;
 import com.vuks.services.exceptions.OutOfStockException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -50,10 +51,19 @@ public class OrdersService extends EntityService<Order> {
      */
     @Transactional
     public void placeOrder(Order order) {
-        if (order.getLenses().size() < 2)
+        List<Lens> llst = order.getLenses();
+        if (llst.size() < 2)
             //wyjątek z hierarchii RuntimeException powoduje wycofanie transakcji (rollback)
             throw new NotEnoughItemsException();
-        for (Lens lensStub : order.getLenses()) {
+        
+        int kwota = 0;
+        for (Lens lensStub : llst) {
+            kwota += lensStub.getCena();
+        }
+        if (kwota < 10.0)
+            throw new OrderPriceNotHighEnoughException();
+        
+        for (Lens lensStub : llst) {
             Lens lens = em.find(Lens.class, lensStub.getId());
 
             if (lens.getAmount() < 1) {
